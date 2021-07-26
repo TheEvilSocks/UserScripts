@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Top.gg voting without ads!
-// @version      0.1
-// @description  Trick top.gg into thinking you don't have adblock, by creating a fake ad element.
+// @version      0.2
+// @description  Show the vote button after loading the website, even with adblock on!
 // @author       TheEvilSocks
 // @match        https://top.gg/bot/*/vote
 // @grant        none
@@ -12,14 +12,10 @@
 // @downloadURL     https://raw.githubusercontent.com/TheEvilSocks/UserScripts/master/topgg.user.js
 // ==/UserScript==
 
-
-// Create a fake ad to trick the site into thinking you don't have adblock.
-let fakeAd = document.createElement("span");
-fakeAd.id = "ECKckuBYwZaP";
-document.body.appendChild(fakeAd);
-
 // Hide the add text and show the vote button after they loaded.
 document.addEventListener("DOMContentLoaded", () => {
-    document.getElementById("vote-root").style.display = null;
-    document.getElementById("video-root").style.display = "none";
+    setTimeout(() => {
+        document.getElementsByClassName("slider-root")[0].style.display = "block";
+        document.getElementById("video-root").style.display = "none";
+    }, 10);
 });
